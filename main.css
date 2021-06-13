@@ -1,0 +1,126 @@
+/* GENERAL HTML ELEMENTS */
+
+body{
+	zoom:200%;
+}
+
+hr {
+	margin:1px;
+	border-width:0;
+	color:gray;
+	background-color:gray;
+	height:3px;
+}
+
+h1 {
+	margin:2px;
+}
+
+h2 {
+	display:inline;
+	text-align:center;
+	margin:auto;
+}
+
+a {
+	color:FFF;
+}
+
+@font-face{
+	font-family:'EmojiSymbols';
+	src:url(assets/EmojiSymbols-Regular-37883244862ada81e50a5c43f090ab5b696a4d27c5e66d321546a1638bb1e682.woff) format("woff");
+	text-decoration:none;
+	font-style:normal;
+}
+
+/* HEADER RELATED CLASSES */
+
+.header {
+	position:fixed;
+	top:0;
+	right:0;
+	width:50vw;
+	background-color:000;
+}
+
+.head {
+	color:FFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* FOOTER RELATED CLASSES */
+
+.footer {
+	position:fixed;
+	bottom:0;
+	right:0;
+	width:50vw;
+	background-color:000;
+}
+
+.controls {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.player {
+	width:80%;
+	margin-left:3px;
+}
+
+.control {
+	width:3vh;
+	padding-bottom:11px;
+	font-size:3vh;
+	text-align: center; 
+	align-items: center;
+	color: white;
+	background-color: black;
+	font-family: 'EmojiSymbols';
+	border:none;
+}
+
+/* CONTENT RELATED CLASSES */
+
+.content {
+	margin-top:7vh;
+	margin-bottom:8vh;
+}
+
+.element {
+	background-color:000;
+	color:FFF;
+	border:solid 2px white;
+	padding:2px;
+}
+
+.title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 90%;
+	font-size:40px;
+}
+
+.author {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 90%;
+	font-size:20px;
+}
+
+.overlay {
+	display:none;
+	position:fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	z-index:10;
+	background-color:FFF;
+}
+
