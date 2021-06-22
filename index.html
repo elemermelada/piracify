@@ -124,7 +124,7 @@ async function playTrack(track) {
 function nextTrack(flag = 1) {
 	if (flag==1) {
 		if (shuff==1) {currTrack = Math.floor(Math.random() * (currPlaylist.tracks.length+1))}
-		playTrack((currTrack+1) % (currPlaylist.tracks.length-1));
+		playTrack((currTrack+1) % (currPlaylist.tracks.length));
 	}
 	else {
 		if (loop == 1) {
@@ -132,7 +132,7 @@ function nextTrack(flag = 1) {
 		}
 		else {
 			if (shuff==1) {currTrack = Math.floor(Math.random() * (currPlaylist.tracks.length+1))}
-			playTrack((currTrack+1) % (currPlaylist.tracks.length-1));
+			playTrack((currTrack+1) % (currPlaylist.tracks.length));
 		}
 	}
 }
