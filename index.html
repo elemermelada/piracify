@@ -66,7 +66,16 @@ async function selectPlaylist(playlist) {
 			data_js = {"title":track, "author":"Unknown artist"};
 		}
 		
-		document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element"><div class="title" style="background-color:000;"><a href="javascript:playTrack(' + currPlaylist.tracks.indexOf(track) + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + currPlaylist.tracks.indexOf(track) + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + currPlaylist.tracks.indexOf(track) + '");\'>Add</a></div></div>';
+		if (playlist == -1) {
+			
+			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element"><div class="title" style="background-color:000;"><a href="javascript:playTrack(' + currPlaylist.tracks.indexOf(track) + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a></div></div>';
+		
+		}
+		else {
+		
+			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element"><div class="title" style="background-color:000;"><a href="javascript:playTrack(' + currPlaylist.tracks.indexOf(track) + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a> | <a href=\'javascript:delTrack("' + track + '", "' + currPlaylist.playlist + '");\'>Remove</a></div></div>';
+			
+		}
 	}
 }
 
@@ -164,7 +173,7 @@ function togShuffle() {
 
 async function changeMetadata(t) {
 
-	var track = currPlaylist.tracks[t];
+	var track = t;
 	var data_js = await fetch("tracks/metadata/" + track + ".json", conf1);
 
 	if (data_js.ok) {
@@ -211,11 +220,14 @@ async function newPlaylist() {
 	
 }
 
+// ADD TO PLAYLIST MENU
+
 async function addTrackMenu(t) {
 
 	playlists = await fetch("playlists", conf1).then(res => res.json()).then(js => js.playlists);
 
-	var track = currPlaylist.tracks[t];
+	//var track = currPlaylist.tracks[t];
+	var track = t;
 	var overlay = document.getElementById('overlay');
 	
 	overlay.innerHTML = "Select a playlist";
@@ -263,6 +275,30 @@ function closeMenu() {
 	overlay.innerHTML = "";
 	overlay.style.display = "none";
 	
+}
+
+// REMOVE FROM PLAYLIST
+
+async function delTrack(t,p) {
+
+	var list = await fetch("playlists/" + p + ".json", conf1).then(res => res.json());
+	list.tracks.splice(list.tracks.indexOf(t),1);
+	list.playlist = p;
+	
+	console.log(list);
+	
+	
+	fetch("playlists/edit.php", {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(list)
+	}).then(res => res.text()).then(console.log);
+	
+	fetch("playlists", conf1).then(res => res.json()).then(js => js.playlists).then(p => playlists=p);
+
 }
 
 </script>
