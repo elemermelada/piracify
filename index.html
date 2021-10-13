@@ -22,12 +22,12 @@ async function selectHome() {
 	//display all playlists
 	
 	document.getElementById("current").innerHTML = "Home";
-	document.getElementById("content").innerHTML = '<div class="element"><a href="javascript:selectPlaylist(-1)">All tracks</a></div>';
+	document.getElementById("content").innerHTML = '<div class="element"><div class="title"><a href="javascript:selectPlaylist(-1)">All tracks</a></div></div>';
 	
 	for (const list of playlists) {
 		var list_js = await fetch("playlists/" + list + ".json").then(res => res.json());
 		
-		document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><a href=\'javascript:selectPlaylist("' + list + '")\'>' + list_js.title + "</a></div>";
+		document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href=\'javascript:selectPlaylist("' + list + '")\'>' + list_js.title + "</a></div></div>";
 		
 		console.log("playlists/" + list + ".json");
 	}
@@ -68,12 +68,12 @@ async function selectPlaylist(playlist) {
 		
 		if (playlist == -1) {
 			
-			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element"><div class="title" style="background-color:000;"><a href="javascript:playTrack(' + currPlaylist.tracks.indexOf(track) + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a></div></div>';
+			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href="javascript:playTrack(' + currPlaylist.tracks.indexOf(track) + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a></div></div>';
 		
 		}
 		else {
 		
-			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element"><div class="title" style="background-color:000;"><a href="javascript:playTrack(' + currPlaylist.tracks.indexOf(track) + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a> | <a href=\'javascript:delTrack("' + track + '", "' + currPlaylist.playlist + '");\'>Remove</a></div></div>';
+			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href="javascript:playTrack(' + currPlaylist.tracks.indexOf(track) + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a> | <a href=\'javascript:delTrack("' + track + '", "' + currPlaylist.playlist + '");\'>Remove</a></div></div>';
 			
 		}
 	}
@@ -98,6 +98,13 @@ function load() {
 	
 	navigator.mediaSession.setActionHandler('previoustrack', () => {prevTrack()});
 	navigator.mediaSession.setActionHandler('nexttrack', () => {nextTrack()});
+	
+	//fix contents margin to ensure clearance
+	
+	var content = document.getElementById("content")
+	
+	content.style.marginTop = (document.getElementsByClassName("header")[0].clientHeight+2) + "px";
+	content.style.paddingBottom = (document.getElementsByClassName("footer")[0].clientHeight+2) + "px";
 	
 }
 
@@ -236,7 +243,7 @@ async function addTrackMenu(t) {
 	for (const list of playlists) {
 	
 		playlist = await fetch("playlists/" + list + ".json", conf1).then(res => res.json());
-		overlay.innerHTML += '<div class="element"><a href=\'javascript:addTrack("' + list + '", "' + track + '")\'>' + playlist.title + "</a></div>"
+		overlay.innerHTML += '<div class="element"><div class="title"><a href=\'javascript:addTrack("' + list + '", "' + track + '")\'>' + playlist.title + "</a></div></div>"
 	
 	}
 	
@@ -304,7 +311,7 @@ async function delTrack(t,p) {
 </script>
 
 <body onload="load();">
-
+<div class="canvas">
 <header>
 <div class="header">
 	<div class="head">
@@ -343,4 +350,5 @@ async function delTrack(t,p) {
 	</div>
 </div>
 </footer>
+</div>
 </body>

@@ -33,13 +33,20 @@ a {
 	font-style:normal;
 }
 
+/* CANVAS RELATED CLASSES */
+
+.canvas {
+	height:100vh;
+	width:min(28vh, 48vw);	/* Force aspect ratio */
+	margin:0 auto;
+}
+
 /* HEADER RELATED CLASSES */
 
 .header {
 	position:fixed;
 	top:0;
-	right:0;
-	width:50vw;
+	width:min(28vh, 48vw);	/* Force aspect ratio */
 	background-color:000;
 }
 
@@ -55,8 +62,7 @@ a {
 .footer {
 	position:fixed;
 	bottom:0;
-	right:0;
-	width:50vw;
+	width:min(28vh, 48vw);	/* Force aspect ratio */
 	background-color:000;
 }
 
@@ -86,12 +92,12 @@ a {
 /* CONTENT RELATED CLASSES */
 
 .content {
-	margin-top:7vh;
-	margin-bottom:8vh;
+	/* margin-top:7vh;
+	margin-bottom:8vh; */
 }
 
 .element {
-	background-color:000;
+	background-color:333333;
 	color:FFF;
 	border:solid 2px white;
 	padding:2px;
