@@ -133,7 +133,8 @@ async function playTrack(track) {
 	navigator.mediaSession.metadata = new MediaMetadata({
 		title: data_js.title,
 		artist: data_js.author,
-		album: currPlaylist.title
+		album: currPlaylist.title,
+		artwork : [{src: "favicon.png"}]
 	});
 	
 }
