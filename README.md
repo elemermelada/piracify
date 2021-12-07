@@ -1,4 +1,5 @@
 # Piracify
+![Piracify logo](https://raw.githubusercontent.com/elemermelada/Piracify/main/favicon.png)
 ## WebApp to organize and play music.
 
 > **V 0.2** Import music from YouTube
