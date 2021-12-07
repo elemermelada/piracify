@@ -82,6 +82,14 @@ async function selectPlaylist(playlist) {
 
 function load() {
 	
+	//leave confirmation dialog
+	
+	window.onbeforeunload = function(e) {
+	  return "Do you want to exit this page?";
+	};
+	
+	//start display
+	
 	selectHome();
 	
 	fetch("tracks")
