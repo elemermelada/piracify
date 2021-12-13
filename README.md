@@ -28,7 +28,7 @@ Description.
 1. Add all release files to server root or to a directory
 1. favicon.png may be replaced if desired
 
-In a RPi running raspbian (replace *youtube-dl_2021.06.06-1_all.deb* for newer version if available):
+In a RPi running raspbian (replace ++youtube-dl_2021.06.06-1_all.deb++ for newer version if available):
 
 First:
 ```
