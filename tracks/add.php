@@ -23,7 +23,7 @@ echo '
 	
 } else {
 	
-	$com = 'youtube-dl ' . $url . ' -f 140 --output "%(id)s.mp3"';
+	$com = 'yt-dlp ' . $url . ' -f 140 --output "%(id)s.mp3"';
 	$out = shell_exec($com); 
 	echo "Command: " . $com . '</div><div class="element">' . "Output: " . $out;
 	
