@@ -12,7 +12,7 @@ var currTrack = 0;
 var loop = 0;
 var shuff = 0;
 
-var conf1 = {headers: {'pragma': 'no-cache'}};
+const conf1 = {headers: {'pragma': 'no-cache'}};
 
 async function selectHome() {
 	
@@ -97,9 +97,17 @@ async function selectPlaylist(playlist,isAuthor) {
 	document.getElementById("current").innerHTML = currPlaylist.title;
 	
 	document.getElementById("content").innerHTML = '';
+
+	const confCustom = {
+		headers: {'pragma': 'no-cache'},
+		body: JSON.stringify(tracks)
+	};
+	var data = await fetch("tracks/metadata/metadata_grabber.php", confCustom);
+	console.log(data);
 	
 	for (const track of currPlaylist.tracks) {
-		var data_js = await fetch("tracks/metadata/" + track + ".json", conf1);
+		
+		const data_js = await fetch("tracks/metadata/" + track + ".json", conf1);
 		
 		if (data_js.ok) {
 			data_js = await data_js.json();
