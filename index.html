@@ -111,12 +111,12 @@ async function selectPlaylist(playlist,isAuthor) {
 		
 		var data_js = tracksData[tracks];
 		
-		if (data_js.ok) {
-			data_js = await data_js.json();
-		}
-		else {
-			data_js = {"title":track, "author":"Unknown artist"};
-		}
+		// if (data_js.ok) {
+		// 	data_js = await data_js.json();
+		// }
+		// else {
+		// 	data_js = {"title":track, "author":"Unknown artist"};
+		// }
 		
 		if (playlist == -1) {
 			

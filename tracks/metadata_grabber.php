@@ -12,7 +12,12 @@
     for ($i=1;$i<count($tracks);$i++) {
 
         $trackjson = file_get_contents("metadata/" . $tracks[$i] . ".json");
-        $trackdata = json_decode($trackjson, true);
+
+        if ($trackjson=="") {
+            $trackdata= Array('title' => $tracks[$i], 'author' => 'Unknown artist');
+        } else {
+            $trackdata = json_decode($trackjson, true);
+        }
 
         $tracks_metadata[$trackdata["track"]] = $trackdata;
 
