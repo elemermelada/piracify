@@ -100,7 +100,11 @@ async function selectPlaylist(playlist,isAuthor) {
 
 	const confCustom = {
 		method: 'POST',
-		headers: {'pragma': 'no-cache'},
+		headers: {
+			'pragma': 'no-cache',
+			'Accept': 'application/json',
+      		'Content-Type': 'application/json'
+		},
 		body: JSON.stringify({tracks: tracks})
 	};
 	var data = await fetch("tracks/metadata_grabber.php", confCustom);
