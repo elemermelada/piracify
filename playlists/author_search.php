@@ -9,7 +9,7 @@
         $trackjson = file_get_contents("../tracks/metadata/" . $trackname . ".json");
 
         if ($trackjson!==false) {
-            $trackdata = json_decode($trackjson);
+            $trackdata = json_decode($trackjson, true);
             print_r($trackdata["author"]);
             echo "<p>";
         }
