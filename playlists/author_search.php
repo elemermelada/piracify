@@ -27,7 +27,7 @@
     }
 
     sort($authors);
-    array_unshift($authors, "Unknown artist")
+    array_unshift($authors, "Unknown artist");
     echo json_encode($authors);
 
 ?>
