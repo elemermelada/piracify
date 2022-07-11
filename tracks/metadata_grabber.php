@@ -1,5 +1,9 @@
 <?php
 
+    if ($_POST["tracks"]=="") {
+        die('<form action="" method="POST"><input name="tracks"><input type="submit"></form>');
+    }
+
     //requested tracks
 
     $tracks = json_decode($_POST["tracks"], true);
