@@ -38,10 +38,10 @@ async function selectAuthor() {
 
 	console.log(authors)
 	
-	for (const author of authors) {
+	for (const author in authors) {
 		
-		console.log(author)
-		document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href=\'javascript:selectPlaylist("' + author + '",true)\'>' + author + "</a></div></div>";
+		const authorTrackCount = authors[author];
+		document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href=\'javascript:selectPlaylist("' + author + '",true)\'>' + author + " (" + authorTrackCount + ")</a></div></div>";
 
 	}
 
