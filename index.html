@@ -116,7 +116,7 @@ async function selectPlaylist(playlist,isAuthor) {
 		// 	data_js = {"title":track, "author":"Unknown artist"};
 		// }
 		
-		if (playlist == -1) {
+		if (playlist == -1 || playlistIsAuthor) {
 			
 			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element" id="' + track + '"><div class="title"><a href="javascript:playTrack(' + track + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a></div></div>';
 		
