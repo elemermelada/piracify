@@ -98,20 +98,18 @@ async function selectPlaylist(playlist,isAuthor) {
 	
 	document.getElementById("content").innerHTML = '';
 
-	fetch("tracks/metadata_grabber.php", {
+	const tracksData = await fetch("tracks/metadata_grabber.php", {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({tracks:tracks})
-	}).then(res => res.text()).then(console.log);
+	}).then(res => res.text()).then(JSON.parse);
 
-	console.log(currPlaylist.tracks);
-	
 	for (const track of currPlaylist.tracks) {
 		
-		var data_js = await fetch("tracks/metadata/" + track + ".json", conf1);
+		var data_js = tracksData[tracks];
 		
 		if (data_js.ok) {
 			data_js = await data_js.json();
