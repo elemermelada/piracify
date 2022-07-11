@@ -30,8 +30,6 @@ async function selectAuthor() {
 	const authors = await fetch("playlists/author_search.php", conf1).then(res => res.json());
 	isHome = false;
 	
-	console.log(authors);
-	
 	//display all playlists
 	
 	document.getElementById("current").innerHTML = "Authors";
@@ -120,12 +118,12 @@ async function selectPlaylist(playlist,isAuthor) {
 		
 		if (playlist == -1) {
 			
-			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href="javascript:playTrack(' + currPlaylist.tracks.indexOf(track) + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a></div></div>';
+			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element" id="' + track + '"><div class="title"><a href="javascript:playTrack(' + track + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a></div></div>';
 		
 		}
 		else {
 		
-			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href="javascript:playTrack(' + currPlaylist.tracks.indexOf(track) + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a> | <a href=\'javascript:delTrack("' + track + '", "' + currPlaylist.playlist + '");\'>Remove</a></div></div>';
+			document.getElementById("content").innerHTML = await document.getElementById("content").innerHTML + '<div class="element" id="' + track + '"><div class="title"><a href="javascript:playTrack(' + track + ');">' + data_js.title + '</a></div><div class="author">' + data_js.author + ' | <a href=\'javascript:changeMetadata("' + track + '");\'>Edit</a> | <a href=\'javascript:addTrackMenu("' + track + '");\'>Add</a> | <a href=\'javascript:delTrack("' + track + '", "' + currPlaylist.playlist + '");\'>Remove</a></div></div>';
 			
 		}
 	}
@@ -173,7 +171,6 @@ function load() {
 async function playTrack(track) {
 	
 	var player = document.getElementById("player")
-	var t = currPlaylist.tracks[track];
 	
 	var data_js = await fetch("tracks/metadata/" + t + ".json", conf1);
 
@@ -181,12 +178,12 @@ async function playTrack(track) {
 		data_js = await data_js.json();
 	}
 	else {
-		data_js = {"title":t, "author":"Unknown artist"};
+		data_js = {"title":track, "author":"Unknown artist"};
 	}
 	
 	currTrack = track;
 	document.getElementById("current").innerHTML = currPlaylist.title + " > " + data_js.title;
-	player.src = "tracks/" + t + ".mp3";
+	player.src = "tracks/" + track + ".mp3";
 	player.play();
 	
 	navigator.mediaSession.metadata = new MediaMetadata({
@@ -199,22 +196,25 @@ async function playTrack(track) {
 }
 
 function nextTrack(flag = 1) {
-	if (flag==1) {
-		if (shuff==1) {currTrack = Math.floor(Math.random() * (currPlaylist.tracks.length+1))}
-		playTrack((currTrack+1) % (currPlaylist.tracks.length));
+
+	var trackIndex = currPlaylist.tracks.indexOf(currTrack)
+
+	if (flag == 1) {
+		if (shuff==1) {trackIndex = Math.floor(Math.random() * (currPlaylist.tracks.length+1))}
+		playTrack(currPlaylist.tracks[(trackIndex+1) % (currPlaylist.tracks.length)]);
 	}
 	else {
 		if (loop == 1) {
 			playTrack(currTrack);
 		}
 		else {
-			if (shuff==1) {currTrack = Math.floor(Math.random() * (currPlaylist.tracks.length+1))}
-			playTrack((currTrack+1) % (currPlaylist.tracks.length));
+			if (shuff==1) {trackIndex = Math.floor(Math.random() * (currPlaylist.tracks.length+1))}
+			playTrack(currPlaylist.tracks[(trackIndex+1) % (currPlaylist.tracks.length)]);
 		}
 	}
 }
 function prevTrack() {
-	playTrack((currTrack-1 + currPlaylist.tracks.length) % (currPlaylist.tracks.length));
+	playTrack(currPlaylist.tracks[(currTrack-1 + currPlaylist.tracks.length) % (currPlaylist.tracks.length)]);
 }
 
 // CHANGE OPTIONS
