@@ -172,7 +172,7 @@ async function playTrack(track) {
 	
 	var player = document.getElementById("player")
 	
-	var data_js = await fetch("tracks/metadata/" + t + ".json", conf1);
+	var data_js = await fetch("tracks/metadata/" + track + ".json", conf1);
 
 	if (data_js.ok) {
 		data_js = await data_js.json();
