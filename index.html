@@ -3,7 +3,7 @@
 
 <script>
 
-var isHome = true;
+var isHome;
 var playlists;
 
 var currPlaylist;
@@ -15,27 +15,60 @@ var conf1 = {headers: {'pragma': 'no-cache'}};
 
 async function selectHome() {
 	
-	playlists = await fetch("playlists", conf1).then(res => res.json()).then(js => js.playlists);
 	isHome= true;
+	
+	document.getElementById("current").innerHTML = "Home";
+	document.getElementById("content").innerHTML = '<div class="element"><div class="title"><a href="javascript:selectPlaylist(-1,false)">All tracks</a></div></div>';
+	document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href="javascript:selectAuthor()">By Author</a></div></div>';
+	document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href="javascript:selectPlaylistMenu()">Playlists</a></div></div>';
+
+}
+
+async function selectAuthor() {
+
+	const authors = await fetch("playlists/author_search.php", conf1).then(res => res.json());
+	isHome= false;
+	
+	console.log(authors);
+	
+	//display all playlists
+	
+	document.getElementById("current").innerHTML = "Authors";
+
+	document.getElementById("content").innerHTML = '';
+	
+	for (const author of authors) {
+		
+		document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href=\'javascript:selectPlaylist("' + author + '",true)\'>' + author + "</a></div></div>";
+
+	}
+
+}
+
+async function selectPlaylistMenu() {
+
+	playlists = await fetch("playlists", conf1).then(res => res.json()).then(js => js.playlists);
+	isHome= false;
 	
 	console.log(playlists);
 	
 	//display all playlists
 	
-	document.getElementById("current").innerHTML = "Home";
-	document.getElementById("content").innerHTML = '<div class="element"><div class="title"><a href="javascript:selectPlaylist(-1)">All tracks</a></div></div>';
+	document.getElementById("current").innerHTML = "Playlists";
+
+	document.getElementById("content").innerHTML = '';
 	
 	for (const list of playlists) {
 		var list_js = await fetch("playlists/" + list + ".json").then(res => res.json());
 		
-		document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href=\'javascript:selectPlaylist("' + list + '")\'>' + list_js.title + "</a></div></div>";
+		document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href=\'javascript:selectPlaylist("' + list + '",false)\'>' + list_js.title + "</a></div></div>";
 		
 		console.log("playlists/" + list + ".json");
 	}
 
 }
 
-async function selectPlaylist(playlist) {
+async function selectPlaylist(playlist,isAuthor) {
 
 	if (playlist == -1) {
 		
@@ -46,7 +79,13 @@ async function selectPlaylist(playlist) {
 		}
 		
 	} else {
-		currPlaylist = await fetch("playlists/" + playlist + ".json", conf1).then(res => res.json());
+
+		if (isAuthor==true) {
+			currPlaylist = await fetch("playlists/author.php?author=" + playlist, conf1).then(res => res.json());
+		} else {
+			currPlaylist = await fetch("playlists/" + playlist + ".json", conf1).then(res => res.json());
+		}
+		
 	}
 	
 	isHome==false;
