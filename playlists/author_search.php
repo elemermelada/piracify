@@ -20,6 +20,6 @@
 
     }
 
-    print_r($authors);
+    echo json_encode($authors);
 
 ?>
