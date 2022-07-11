@@ -25,7 +25,7 @@ echo '
 	
 	$com = 'yt-dlp ' . $url . ' -f 140 --output "%(id)s.mp3"';
 	$out = shell_exec($com); 
-	echo "Command: " . $com . '</div><div class="element"><pre>' . "Output: " . $out;
+	echo "Command: " . $com . '</div><div class="element">User: ' . exec('whoami') . '</div><div class="element"><pre>' . "Output: " . $out;
 	
 	
 }
