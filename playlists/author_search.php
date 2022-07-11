@@ -28,6 +28,6 @@
 
     sort($authors);
     array_unshift($authors, "Unknown artist");
-    echo json_encode($authors);
+    echo json_encode($authors_trackcount);
 
 ?>
