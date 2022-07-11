@@ -4,6 +4,7 @@
 <script>
 
 var isHome;
+var playlistIsAuthor;
 var playlists;
 
 var currPlaylist;
@@ -15,7 +16,7 @@ var conf1 = {headers: {'pragma': 'no-cache'}};
 
 async function selectHome() {
 	
-	isHome= true;
+	isHome = true;
 	
 	document.getElementById("current").innerHTML = "Home";
 	document.getElementById("content").innerHTML = '<div class="element"><div class="title"><a href="javascript:selectPlaylist(-1,false)">All tracks</a></div></div>';
@@ -27,7 +28,7 @@ async function selectHome() {
 async function selectAuthor() {
 
 	const authors = await fetch("playlists/author_search.php", conf1).then(res => res.json());
-	isHome= false;
+	isHome = false;
 	
 	console.log(authors);
 	
@@ -48,7 +49,7 @@ async function selectAuthor() {
 async function selectPlaylistMenu() {
 
 	playlists = await fetch("playlists", conf1).then(res => res.json()).then(js => js.playlists);
-	isHome= false;
+	isHome = false;
 	
 	console.log(playlists);
 	
@@ -85,10 +86,11 @@ async function selectPlaylist(playlist,isAuthor) {
 		} else {
 			currPlaylist = await fetch("playlists/" + playlist + ".json", conf1).then(res => res.json());
 		}
-		
+
 	}
-	
-	isHome==false;
+
+	playlistIsAuthor = isAuthor;
+	isHome = false;
 	
 	//display all tracks
 	
