@@ -1,5 +1,7 @@
 <?php
 
+    die($_POST["tracks"]);
+
     if ($_POST["tracks"]=="") {
         die('<form action="" method="POST"><input name="tracks"><input type="submit"></form>');
     }
