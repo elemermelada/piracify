@@ -10,10 +10,16 @@
 
         if ($trackjson!==false) {
             $trackdata = json_decode($trackjson, true);
-            print_r($trackdata["author"]);
-            echo "<p>";
+            $trackauth = $trackdata["author"];
+            
+            if (in_array($trackauth, $authors)===false) {
+                $authors[] = $trackauth;
+            }
+
         }
 
     }
+
+    print_r($authors);
 
 ?>
