@@ -109,7 +109,7 @@ async function selectPlaylist(playlist,isAuthor) {
 
 	for (const track of currPlaylist.tracks) {
 		
-		var data_js = tracksData[tracks];
+		var data_js = tracksData[track];
 		
 		// if (data_js.ok) {
 		// 	data_js = await data_js.json();
@@ -118,7 +118,7 @@ async function selectPlaylist(playlist,isAuthor) {
 		// 	data_js = {"title":track, "author":"Unknown artist"};
 		// }
 
-		console.warn(data_js)
+		console.warn(tracksData)
 		
 		if (playlist == -1) {
 			
