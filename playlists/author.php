@@ -21,6 +21,6 @@
 
     }
 
-    echo "{playlist:" . $author . ",title:" . $author . ",tracks:" . json_encode($tracks_found) . "}";
-    
+    echo '{playlist:"' . json_encode($author) . '",title:"' . json_encode($author) . '",tracks:' . json_encode($tracks_found) . "}";
+
 ?>
