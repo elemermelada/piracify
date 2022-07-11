@@ -110,7 +110,7 @@ async function selectPlaylist(playlist,isAuthor) {
 	
 	for (const track of currPlaylist.tracks) {
 		
-		const data_js = await fetch("tracks/metadata/" + track + ".json", conf1);
+		var data_js = await fetch("tracks/metadata/" + track + ".json", conf1);
 		
 		if (data_js.ok) {
 			data_js = await data_js.json();
