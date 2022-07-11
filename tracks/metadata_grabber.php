@@ -14,7 +14,7 @@
         $trackjson = file_get_contents("metadata/" . $tracks[$i] . ".json");
 
         if ($trackjson=="") {
-            $trackdata= Array('title' => $tracks[$i], 'author' => 'Unknown artist');
+            $trackdata= Array('track' => $tracks[$i], 'title' => $tracks[$i], 'author' => 'Unknown artist');
         } else {
             $trackdata = json_decode($trackjson, true);
         }
