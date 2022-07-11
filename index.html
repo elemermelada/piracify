@@ -103,8 +103,10 @@ async function selectPlaylist(playlist,isAuthor) {
 		headers: {'pragma': 'no-cache'},
 		body: JSON.stringify(tracks)
 	};
-	var data = await fetch("tracks/metadata/metadata_grabber.php", confCustom);
+	var data = await fetch("tracks/metadata_grabber.php", confCustom);
 	console.log(data);
+
+	console.log(currPlaylist.tracks);
 	
 	for (const track of currPlaylist.tracks) {
 		
