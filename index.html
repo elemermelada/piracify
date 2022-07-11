@@ -214,7 +214,8 @@ function nextTrack(flag = 1) {
 	}
 }
 function prevTrack() {
-	playTrack(currPlaylist.tracks[(currTrack-1 + currPlaylist.tracks.length) % (currPlaylist.tracks.length)]);
+	var trackIndex = currPlaylist.tracks.indexOf(currTrack)
+	playTrack(currPlaylist.tracks[(trackIndex-1 + currPlaylist.tracks.length) % (currPlaylist.tracks.length)]);
 }
 
 // CHANGE OPTIONS
