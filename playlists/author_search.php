@@ -10,7 +10,7 @@
 
         if ($trackjson!==false) {
             $trackdata = json_decode($trackjson);
-            print_r($trackdata);
+            print_r($trackdata["author"]);
             echo "<p>";
         }
 
