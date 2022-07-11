@@ -98,17 +98,14 @@ async function selectPlaylist(playlist,isAuthor) {
 	
 	document.getElementById("content").innerHTML = '';
 
-	const confCustom = {
-		method: 'POST',
-		headers: {
-			'pragma': 'no-cache',
-			'Accept': 'application/json',
-      		'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({tracks: tracks})
-	};
-	var data = await fetch("tracks/metadata_grabber.php", confCustom);
-	console.log(data);
+	fetch("tracks/metadata_grabber.php", {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({tracks:tracks})
+	}).then(res => res.text()).then(console.log);
 
 	console.log(currPlaylist.tracks);
 	
