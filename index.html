@@ -104,7 +104,7 @@ async function selectPlaylist(playlist,isAuthor) {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({tracks:tracks})
+    body: JSON.stringify({tracks:currPlaylist.tracks})
 	}).then(res => res.text()).then(JSON.parse);
 
 	for (const track of currPlaylist.tracks) {

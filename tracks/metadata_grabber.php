@@ -9,7 +9,7 @@
         die('<form action="" method="POST"><input name="tracks"><input type="submit"></form>');
     }
 
-    for ($i=1;$i<count($tracks);$i++) {
+    for ($i=0;$i<count($tracks);$i++) {
 
         $trackjson = file_get_contents("metadata/" . $tracks[$i] . ".json");
 
