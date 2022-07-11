@@ -35,9 +35,12 @@ async function selectAuthor() {
 	document.getElementById("current").innerHTML = "Authors";
 
 	document.getElementById("content").innerHTML = '';
+
+	console.log(authors)
 	
 	for (const author of authors) {
 		
+		console.log(author)
 		document.getElementById("content").innerHTML = document.getElementById("content").innerHTML + '<div class="element"><div class="title"><a href=\'javascript:selectPlaylist("' + author + '",true)\'>' + author + "</a></div></div>";
 
 	}

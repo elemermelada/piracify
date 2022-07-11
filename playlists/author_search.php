@@ -1,7 +1,7 @@
 <?php
 
     $authors = Array();
-    $authors_trackcount = Array("Unknown artist");
+    $authors_trackcount = Array("Unknown artist" => "0");
     $tracks=glob("../tracks/*.mp3");
 
     for ($i=0;$i<count($tracks);$i++) {
@@ -28,6 +28,13 @@
 
     sort($authors);
     array_unshift($authors, "Unknown artist");
-    echo json_encode($authors_trackcount);
+
+    $authors_send = Array();
+
+    foreach ($authors as $auth) {
+        $authors_send[$auth] = $authors_trackcount[$auth];
+    }
+
+    echo json_encode($authors_send);
 
 ?>
