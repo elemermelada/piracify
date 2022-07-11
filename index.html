@@ -99,6 +99,7 @@ async function selectPlaylist(playlist,isAuthor) {
 	document.getElementById("content").innerHTML = '';
 
 	const confCustom = {
+		method: 'POST',
 		headers: {'pragma': 'no-cache'},
 		body: JSON.stringify(tracks)
 	};
