@@ -9,14 +9,18 @@
         $trackname = substr($tracks[$i],10,strlen($tracks[$i])-10-4);
         $trackjson = file_get_contents("../tracks/metadata/" . $trackname . ".json");
 
-        if ($trackjson!==false) {
+        if ($trackjson!=false) {
             $trackdata = json_decode($trackjson, true);
             $trackauth = $trackdata["author"];
             
-            if ($trackauth===$author) {
+            if ($trackauth==$author) {
                 $tracks_found[] = $trackname;
             }
 
+        } else {
+            if ($author == "Unknown artist") {
+                $tracks_found[] = $trackname;
+            }
         }
 
     }
