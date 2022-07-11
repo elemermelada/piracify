@@ -3,7 +3,7 @@
     $json = file_get_contents('php://input');
     $tracks = json_decode($json, true)['track'];
 
-    if ($_POST["tracks"]=="") {
+    if ($tracks=="") {
         die('<form action="" method="POST"><input name="tracks"><input type="submit"></form>');
     }
 
