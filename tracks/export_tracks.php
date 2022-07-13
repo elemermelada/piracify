@@ -12,7 +12,7 @@
         }
 
         copy($track, "exported/" . $trackname . ".mp3");
-        echo $track . " exported as " . "../exported/" . $trackname . ".mp3" . "<br>";
+        echo $track . " exported as " . "exported/" . $trackname . ".mp3" . "<br>";
     }
 
 ?>
