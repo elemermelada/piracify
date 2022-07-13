@@ -11,11 +11,8 @@
             $trackname = $trackdata["author"] . " - " . $trackdata["title"];
         }
 
-
-        copy($track, "../exported/" . $trackname . ".mp3")
-
+        copy($track, "../exported/" . $trackname . ".mp3");
         echo $track . " exported as " . "../exported/" . $trackname . ".mp3" . "<br>";
-
     }
 
 ?>
