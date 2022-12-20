@@ -3,7 +3,7 @@
 $com = 'zip exported/output.zip *.mp3';
 $out = shell_exec($com);
 echo $out;
-echo '<p>'
+echo '<p>';
 
 
 $tracks = glob("*.mp3");
@@ -20,12 +20,12 @@ foreach ($tracks as $track) {
     $com = 'zip exported/output.zip *.mp3';
     $out = shell_exec($com);
     echo $out;
-    echo '<p>'
+    echo '<p>';
 
-    $com = 'printf "@ ' . $track . '\n@=' . $trackname . '\n" | zipnote -w exported/output.zip'
+    $com = 'printf "@ ' . $track . '\n@=' . $trackname . '\n" | zipnote -w exported/output.zip';
     $out = shell_exec($com);
     echo $out;
-    echo '<p>'
+    echo '<p>';
 }
 
 ?>
