@@ -1,6 +1,6 @@
 <?php
 
-$com = 'zip exported/output.zip *.mp3';
+$com = 'find -iname "*.mp3" -print0 | xargs -0 zip -r exported/output.zip';
 $out = shell_exec($com);
 echo $out;
 echo '<p>';
